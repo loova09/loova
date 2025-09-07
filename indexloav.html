@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>haah lah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(160deg, #fce7f3, #e0f2fe);
+      font-family: "Quicksand", sans-serif;
+      overflow: hidden;
+    }
+
+    .phone {
+      width: 320px;
+      height: 580px;
+      background: #fff;
+      border: 12px solid #222;
+      border-radius: 35px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .screen {
+      flex: 1;
+      background: #f9fafb;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: flex-end;
+      justify-content: flex-start;
+    }
+
+    .bubble {
+      background: #f9a8d4;
+      color: white;
+      padding: 12px 16px;
+      border-radius: 18px;
+      box-shadow: 0 4px 10px rgba(249, 168, 212, 0.4);
+      font-size: 0.95rem;
+      border-bottom-right-radius: 6px;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeIn 0.6s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .btn {
+      align-self: center;
+      margin-top: 30px;
+      background: linear-gradient(90deg, #f9a8d4, #f472b6);
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      padding: 12px 22px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: transform 0.2s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      display: none;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* floating emoji */
+    .emoji {
+      position: absolute;
+      font-size: 1.8rem;
+      animation: floatUp 3s linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-600px) scale(1.5); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <div class="screen">
+      <div class="bubble" style="animation-delay: 0.8s;">화이팅 jeblinn!</div>
+      <div class="bubble" style="animation-delay: 1.8s;">don’t worry too much yaa, even if it feels hard, i know u got this</div>
+      <div class="bubble" style="animation-delay: 2.8s;">sending all my love cheer u up 💕</div>
+      <button class="btn" id="spamBtn" onclick="spamEmojis()">pencet dah ngab</button>
+    </div>
+  </div>
+
+  <script>
+    // muncul button setelah bubble terakhir selesai
+    setTimeout(() => {
+      document.getElementById("spamBtn").style.display = "block";
+    }, 3800);
+
+    function spamEmojis() {
+      const emojis = ["💕","🌷","🌸"];
+      let count = 0;
+      let interval = setInterval(() => {
+        const span = document.createElement("span");
+        span.className = "emoji";
+        span.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        span.style.left = Math.random() * window.innerWidth + "px";
+        span.style.top = "550px";
+        document.body.appendChild(span);
+
+        setTimeout(() => span.remove(), 3000);
+
+        count++;
+        if (count > 30) clearInterval(interval); // total 30 emot keluar
+      }, 200); // tiap 200ms keluar 1 emot
+    }
+  </script>
+</body>
+</html>
